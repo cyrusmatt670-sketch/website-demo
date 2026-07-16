@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./fontawesome-free-7.0.1-web/css/all.min.css" />
+  <script defer src="js/bootstrap.bundle.min.js"></script>
+  <title>LIBRARY | Ecommerce Website</title>
+
+  <style>
+    body {
+      padding-top: 90px; /* keep navbar from overlapping */
+      background-color: #f8f8f8;
+      overflow-x: hidden;
+    }
+
+    .search {
+      border-radius: 20px;
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #999;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body id="go_home">
+  <div class="header" >
+    <div class="container-fluid">
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
+        <div class="container">
+          <a class="navbar-brand logo" href="index.php">PHILIPPINE SOUTFIELD E-Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#go_home">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#categ_part">Category</a></li>
+              <li class="nav-item"><a class="nav-link" href="#Go_aboutus">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#Blog">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="#Contact Us">Contact Us</a></li>
+              <li class="nav-item">
+                <input type="text" class="search" id="searchInput" placeholder="Search books..." />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="container" style="margin-top: 40px;">
+      <div class="content-home">
+        <div class="row content-home2" style="margin-top: 50px;">
+          <div class="col-lg-5 col-md-7">
+            <div class="box-container">
+              <h1 class="home-heading">Welcome to <span class="home-span">PHILIPPINE SOUTFIELD</span> E-Library.</h1>
+              <br>
+              <p class="para-home">
+                Explore our collection and find everything you need to bring your knowledge to the next level!
+              </p>
+              <br>
+              <div class="btn-home mt-3">
+                <a href="Guitar Effects.php" class="home-links btn-2" style="text-decoration: none;">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7 col-md-5">
+            <div class="box-container text-center">
+              <img src="images/image 1.png" class="img-home img-fluid" alt=""
+                style="width: 60%; margin-bottom: 65px; margin-left: 296px;" >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>.
+
+
+  <!-- Category Section -->
+  <section class="Categories" id="categ_part">
+    <div class="cat-row">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      <div class="cat-header text-center">
+        <h2>Book Categories</h2>
+        <p>Browse our library collection below. Use the search bar above to find what you need!</p>
+
+        <div class="cat-book">
+          <div class="books">
+            <div class="book-img"><img src="images/Categ 1 .png" alt=""></div>
+            <h4>Textbooks</h4>
+            <p>Academic books for various subjects.</p>
+          </div>
+
+          <div class="books">
+            <div class="book-img"><img src="images/Categ 1 .png" alt=""></div>
+            <h4>Science</h4>
+            <p>Explore the wonders of physics, chemistry, and biology.</p>
+          </div>
+
+          <div class="books">
+            <div class="book-img"><img src="images/Categ 1 .png" alt=""></div>
+            <h4>History</h4>
+            <p>Learn about world events, civilizations, and cultures.</p>
+          </div>
+        </div>
+
+        <div class="cat-book">
+          <div class="books">
+            <div class="book-img"><img src="images/Categ 1 .png" alt=""></div>
+            <h4>Technology</h4>
+            <p>Books on software, hardware, and digital innovation.</p>
+          </div>
+
+          <div class="books">
+            <div class="book-img"><img src="images/Categ 1 .png" alt=""></div>
+            <h4>Biography</h4>
+            <p>Life stories of great people across history.</p>
+          </div>
+        </div>
+
+        <!-- No results message -->
+        <div id="noResults" class="no-results">No books found matching your search.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Search Script -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const books = document.querySelectorAll('.books');
+    const noResults = document.getElementById('noResults');
+
+    searchInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      if (query.length > 0) {
+        // scroll smoothly to the category section when typing
+        document.getElementById('categ_part').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      books.forEach((book) => {
+        const title = book.querySelector('h4').textContent.toLowerCase();
+        const desc = book.querySelector('p').textContent.toLowerCase();
+
+        if (title.includes(query) || desc.includes(query)) {
+          book.style.display = 'block';
+          visibleCount++;
+        } else {
+          book.style.display = 'none';
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 && query !== '' ? 'block' : 'none';
+    });
+  </script>
+
+
+<!-- About us part -->
+
+<div class="about_us" id="Go_aboutus">
+    <div>
+
+        <h2 class="text-center">
+            About Us!
+        </h2>
+ 
+    </div>
+</div>
+
+</body>
+</html>
